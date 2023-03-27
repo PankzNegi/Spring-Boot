@@ -3,6 +3,7 @@ package com.pankz.springboot.topic;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,12 +11,12 @@ import java.util.List;
 public class TopicService
 {
     //Here we moved this to separate business service.Everytime a request comes in this list is sent as response
- private List<Topics> topics= Arrays.asList(
+ private List<Topics> topics= new ArrayList<>(Arrays.asList(
         new Topics("spring"," Spring Framework","Spring Framework Description"),
         new Topics("java"," Core Java","Core Java Description"),
         new Topics("javascript"," JS ","JS Description")
 
-        );
+        ));
  public List<Topics> getAlltopics()
  {
      return topics;
@@ -25,6 +26,10 @@ public class TopicService
      return topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
 
  }
+
+    public void addTopics(Topics topic) {
+     topics.add(topic);
+    }
 }
 
 /*NOTE-Business Service  are Singletons,when an application starts up spring creates an instance of service and then it keeps it in its m/m
