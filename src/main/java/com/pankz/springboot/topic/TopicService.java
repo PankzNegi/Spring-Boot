@@ -20,6 +20,11 @@ public class TopicService
  {
      return topics;
  }
+ public Topics getTopics(String id)
+ {
+     return topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
+
+ }
 }
 
 /*NOTE-Business Service  are Singletons,when an application starts up spring creates an instance of service and then it keeps it in its m/m
